@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="alert alert-info" role="alert" id="alert-analysis">
+    Generating analysis...
+</div>
+<div class="header-container">
+    <h2 id="heading-matches"></h2>
+    <a href="{{ url_for('rss', q=data['query'], duration=data['duration']) }}">
+        <img class="icon" src="/static/icons/rss.svg" alt="RSS feed">
+    </a>
+</div>
+<div class="container">
+    <div id="spinner-search-results" class="spinner-border text-primary d-none" role="status">
+    <span class="visually-hidden">Loading...</span>
+    </div>
+    <div id="search-results" class="grid">
+        
+    </div>
+</div>
+<script>
+    const searchData = {
+        query: "{{ data['query'] }}",
+        duration: "{{ data['duration'] }}"
+    };
+</script>
+
+<script src="{{ url_for('static',filename='search.js') }}"></script>
+{% endblock %}
